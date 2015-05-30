@@ -28,7 +28,7 @@ From https://github.com/Android4SAM/platform_hardware_realtek/tree/master/cm8723
 Modified for rtl8723as and Lenovo A10 by Steffen Graf
 
 ####Building Kernel Module
-When arm-none-eabi- cross compiler is installed and kernel source is in ../kernel/ simply enter make and a kernel module will be built.
+When arm-linux-gnueabihf- cross compiler is installed and kernel source is in ../kernel/ simply enter make and a kernel module will be built.
 
 ```
 cd rtl8723as

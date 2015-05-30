@@ -600,9 +600,9 @@ endif
 ifeq ($(CONFIG_PLATFORM_ARM_RK3188), y)
 EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN
 ARCH := arm
-CROSS_COMPILE := arm-none-eabi-
+CROSS_COMPILE := arm-linux-gnueabihf-
 KSRC := ../kernel/
-MODULE_NAME := wlan
+MODULE_NAME := rtl8723as
 endif
 
 
