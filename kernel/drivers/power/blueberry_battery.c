@@ -68,7 +68,9 @@ static enum power_supply_property blueberry_bat_props[] = {
     POWER_SUPPLY_PROP_CHARGE_NOW,
     POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
     POWER_SUPPLY_PROP_CYCLE_COUNT,
+#ifdef CONFIG_REPORT_ENERGY
     POWER_SUPPLY_PROP_ENERGY_NOW,
+#endif
 #endif
 	POWER_SUPPLY_PROP_HEALTH,										
 };
@@ -397,7 +399,7 @@ static int blueberry_bat_current(struct blueberry_bat *bbbat,
 	if((val->intval > 2000000) ||(val->intval < -2000000)) {
 		pr_err("read back current %d (uA), it's an out of range value.\n", val->intval);
 	}
-
+	val->intval *= -1; //invert, so battery monitors calculate correctly
 	bbbat->cache.current_now = val->intval; 
 
 	return 0;
@@ -652,7 +654,7 @@ static int blueberry_bat_nac(struct blueberry_bat *bbbat,
 	if(ret) 
 		return ret;
 
-	val->intval = nac;
+	val->intval = nac*1000;
 
 	bbbat->cache.nac = val->intval;
 	
@@ -669,7 +671,7 @@ static int blueberry_bat_lmd(struct blueberry_bat *bbbat,
 	if(ret)
 		return ret;
 
-	val->intval = lmd;
+	val->intval = lmd*1000;
 
 	bbbat->cache.lmd = val->intval;
 
@@ -686,7 +688,7 @@ static int blueberry_bat_ilmd(struct blueberry_bat *bbbat,
 	if(ret)
 		return ret;
 
-	val->intval = ilmd;
+	val->intval = ilmd*1000;
 
 	bbbat->cache.ilmd = val->intval;
 
@@ -787,13 +789,13 @@ static int blueberry_bat_virt_report(struct blueberry_bat *bbbat,
         break;
 #ifdef CONFIG_REPORT_FULL_DATA_ITEM
     case POWER_SUPPLY_PROP_CHARGE_NOW:
-        val->intval = bbbat->cache.nac;
+        val->intval = (bbbat->cache.nac)*1000;
         break;
     case POWER_SUPPLY_PROP_CHARGE_FULL:
-        val->intval = bbbat->cache.lmd;
+        val->intval = (bbbat->cache.lmd)*1000;
         break;
     case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
-        val->intval = bbbat->cache.ilmd;
+        val->intval = (bbbat->cache.ilmd)*1000;
         break;
     case POWER_SUPPLY_PROP_CYCLE_COUNT:
         val->intval = bbbat->cache.cyct;
@@ -879,7 +881,7 @@ static int blueberry_bat_get_property(struct power_supply *psy,
         break;
 #ifdef CONFIG_REPORT_FULL_DATA_ITEM
     case POWER_SUPPLY_PROP_CHARGE_NOW:
-		ret = blueberry_bat_nac(bbbat, val);
+	ret = blueberry_bat_nac(bbbat, val);
         break;
     case POWER_SUPPLY_PROP_CHARGE_FULL:
         ret = blueberry_bat_lmd(bbbat, val);
@@ -1345,7 +1347,8 @@ static int blueberry_bat_probe(struct i2c_client *client,
     if (retval < 0)
         return retval;
 
-    name = kasprintf(GFP_KERNEL, "%s-%d", id->name, num);
+    //name = kasprintf(GFP_KERNEL, "%s-%d", id->name, num);
+    name = kasprintf(GFP_KERNEL, "BAT%d", num);
     if (!name) {
         dev_err(&client->dev, "failed to allocate device name\n");
         retval = -ENOMEM;

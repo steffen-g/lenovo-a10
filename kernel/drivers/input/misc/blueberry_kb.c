@@ -192,7 +192,7 @@ static int blueberry_kb_kp_key_mapping(int x)
 {
     switch (x){
         case ASUSDEC_KEYPAD_ESC:
-            return KEY_BACK;
+            return KEY_ESC;
 
         case ASUSDEC_KEYPAD_KEY_WAVE:
             return KEY_GRAVE;
@@ -404,46 +404,46 @@ static int blueberry_kb_kp_key_mapping(int x)
 //////////////////////////////////////////////////////////////////
 
 	case ASUSDEC_KEYPAD_F1:
-		return 255;//KEY_HOME;
+		return KEY_F1;
 
 	case ASUSDEC_KEYPAD_F2:
-		return KEY_LAUNCHER;//250
+		return KEY_F2;
 
         case ASUSDEC_KEYPAD_F3:
-        	return KEY_SETTING;//251
+        	return KEY_F3;
 
 	case ASUSDEC_KEYPAD_F4:
-        	return KEY_MUTE;
+        	return KEY_F4;
 
         case ASUSDEC_KEYPAD_F5:
-	        return KEY_VOLUMEDOWN;
+	        return KEY_F5;
 
         case ASUSDEC_KEYPAD_F6:
-        	return KEY_VOLUMEUP;
+        	return KEY_F6;
 
         case ASUSDEC_KEYPAD_F7:
-        	return KEY_BRIGHTNESSDOWN;
+        	return KEY_F7;
 
         case ASUSDEC_KEYPAD_F8:
-	        return KEY_BRIGHTNESSUP;
+	        return KEY_F8;
 
         case ASUSDEC_KEYPAD_F9:
-	        return KEY_WLAN;
+	        return KEY_F9;
 
         case ASUSDEC_KEYPAD_F10:
-        	return KEY_BLUETOOTH;
+        	return KEY_F10;
 
         case ASUSDEC_KEYPAD_F11:
-        	return KEY_TOUCHPAD;//252
+        	return KEY_F11;
 
         case ASUSDEC_KEYPAD_F12:
-	        return KEY_FORCE_ROTATION;//253
+	        return KEY_F12;
 
 	case ASUSDEC_KEYPAD_INSERT:
-		return KEY_WWW;
+		return KEY_INSERT;
 
 	case ASUSDEC_KEYPAD_PRINTSCREEN:
-		return KEY_SCREENSHOT;//254
+		return KEY_SYSRQ;
 
 	case ASUSDEC_KEYPAD_DELETE:
 		return KEY_DELETE;
