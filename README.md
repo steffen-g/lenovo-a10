@@ -1,6 +1,9 @@
 # lenovo-a10
 Everything for setting up a native Linux on a Lenovo A10 netbook
 
+![LTSpice in wine on armhf on a Lenovo A10](http://gsg-elektronik.de/~steffen/IMG_20150530_125345.jpg)
+
+
 ###1. Kernel
 
 Stock Kernel from Lenovo with modified defconfig to boot Linux instead of Android from eMMC flash.
@@ -11,7 +14,7 @@ Keyboard:
   * Search, switch Window and ... Keys are still unchanged
   
 Battery:
-  * Reports to system as BAT0, charge and discharge current with changed sign, so battery plugins (e.g. from XFCE4) shows correct data)
+  * Reports to system as BAT0, charge and discharge current with changed sign, so battery plugins (e.g. from XFCE4) show correct data
   
 ####Building Kernel
 
