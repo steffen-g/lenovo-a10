@@ -37,3 +37,8 @@ When arm-linux-gnueabihf- cross compiler is installed and kernel source is in ..
 cd rtl8723as
 make
 ```
+
+###3. Bootimage
+Mkbootimage from https://github.com/neo-technologies/rockchip-mkbootimg is used.
+
+
