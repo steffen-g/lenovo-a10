@@ -11,7 +11,7 @@ Keyboard:
   * Search, switch Window and ... Keys are still unchanged
   
 Battery:
-  * Reports to system as BAT0, charge and discharge current with changed sign, so battery plugins (e.g. from XFCE4) shows correct data)
+  * Reports to system as BAT0, charge and discharge current with changed sign, so battery plugins (e.g. from XFCE4) show correct data
   
 ####Building Kernel
 
