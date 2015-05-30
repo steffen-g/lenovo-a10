@@ -16,4 +16,4 @@ Building Kernel:
 
 ARCH=arm make rk3188_a10_linux_flash_defconfig
 
-ARCH=arm CROSS_COMPILE=arm-none-eabi make Image 
+ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make Image 
