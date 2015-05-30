@@ -1,0 +1,8 @@
+# RTL8723AS Driver
+
+From https://github.com/Android4SAM/platform_hardware_realtek/tree/master/cm8723u/wlan/rtl8723A_WiFi_linux_v4.1.3_6044.20121224
+
+Modified for rtl8723as and Lenovo A10 by Steffen Graf
+
+###Building
+When arm-none-eabi- cross compiler is installed and kernel source is in ../kernel/ simply enter make and a kernel module will be built.
