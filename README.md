@@ -58,3 +58,26 @@ mkdir ../out
 
 ###4. Flashtool
 rkflashtool from http://sourceforge.net/projects/rkflashtool/
+
+####Building flashtool
+```
+cd rkflashtool-5.1-src
+make
+```
+
+####Flashing the boot.img
+When flashing via USB:
+```
+cd scripts
+./flash_usb.sh
+```
+
+When running the script on the A10:
+```
+cd scripts
+./flash_mtd.sh
+```
+
+Both scripts must be run as root.
+
+
