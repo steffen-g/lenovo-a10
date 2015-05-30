@@ -78,7 +78,11 @@ cd scripts
 ./flash_mtd.sh
 ```
 
-Both scripts must be run as root. To be able to flash via USB, it is necessary to enter bootloader mode. When Android is still running and developer mode is activated, this can be done via adb reboot bootloader. Otherwise you have to open the device and short the 'recovery' pad to GND and press reset.
+Both scripts must be run as root. To be able to flash via USB, it is necessary to enter bootloader mode. When Android is still running and developer mode is activated, this can be done with:
+```
+adb reboot bootloader
+```
+Otherwise you have to open the device and short the recovery pad to GND and press reset.
 
 Good luck!
 
