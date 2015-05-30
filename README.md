@@ -41,4 +41,5 @@ make
 ###3. Bootimage
 Mkbootimage from https://github.com/neo-technologies/rockchip-mkbootimg is used.
 
-
+###4. Flashtool
+rkflashtool from http://sourceforge.net/projects/rkflashtool/

@@ -1,0 +1,143 @@
+BUILD
+=====
+
+Install libusb-1.0 and its development files and run:
+
+    $ make
+
+For cross-compilation for win32/64 you need to install libusb-1.0.
+See at the end of this document for more information.
+After that, you can run:
+
+    $ make MACH=mingw CROSSPREFIX=i686-w64-mingw32-
+
+    or
+
+    $ make MACH=mingw CROSSPREFIX=x86_64-w64-mingw32-
+
+
+USAGE
+=====
+
+Read parameters:
+
+sudo ./rkflashtool p > parm.bin
+cat parm.bin
+
+The output will show 2 hex numbers and the partition name.
+(....,0x00008000@0x00010000(recovery),....)
+The first number is the size of the partition, the second number is the
+offset. So, to write the recovery image, use:
+
+sudo ./rkflashtool w 0x10000 0x8000 < recovery.img
+
+
+All available commands:
+
+rkflashtool b                         reboot device
+rkflashtool r offset size >file       read flash
+rkflashtool w offset size <file       write flash
+
+rkflashtool m offset size >file       read 0x80 bytes DRAM
+rkflashtool i offset blocks >file     read IDB flash
+rkflashtool p >file                   fetch parameters
+
+rkflashtool e offset size             erase flash (fill with 0xff)
+
+offset and size are in units (blocks) of 512 bytes (!)
+
+
+
+Also included:
+
+
+
+rkcrc           sign files with a cyclic redundency code and optionally
+                add a KRNL or PARM + size header
+
+usage: rkcrc [-k|-p] infile outfile
+
+
+
+rkparameters    generate a parameter file
+
+usage: rkparameters model fw_version partitionsfile > outfile
+
+    model is found in the large case statement, e.g. arnova7g2
+    you can add your own and please send the information back to me
+    (ivop@euronet.nl) for inclusion in future versions.
+
+    fw_version is the version number, e.g. 1.2.3
+
+    partitionsfile is a file that specifies the kernel command line on the
+    first line and describes all the partitions and their sizes. It skips
+    the parameters block and starts with misc. See the example mtdparts.txt
+    for details.
+
+
+
+rkparametersblock   generate the parameters block
+
+usage: rkparametersblock parametersfile outfile
+
+    parametersfile is the file you have generated with rkparameters.
+    outfile is the file to be written, which can later be flashed to your
+    device.
+    rkparametersblock needs rkcrc to sign the parameter file. After that,
+    it generates an empty 4MB file and pastes in the rkcrc'd file five times
+    at the start of the first five NAND pages (it assumes the NAND page size
+    is always 4096. Let me know if you run into something different).
+
+
+
+rkunpack        unpack update.img files (not partition.img (!))
+
+usage: rkunpack file
+
+    supports both RKAF and RKFW (which contains an embedded RKAF file)
+
+
+
+rkpad           pad file with zeroes
+
+usage: rkpad size infile outfile
+
+    Copy infile to outfile and pad with zeroes up to the specified size.
+    size is in blocks of 512 bytes (!) i.e. equal to the partition sizes.
+
+
+
+rkunsign        remove KRNL/PARM header and crc footer
+
+usage: rkunsign infile outfile
+
+
+
+Notes on cross-compiling libusb-1.0 and mman-win32 on debian wheezy:
+
+sudo apt-get install mingw-w64
+
+git clone http://git.libusb.org/libusb.git
+cd libusb
+./autogen.sh
+make clean
+./configure --host i686-w64-mingw32 --prefix=/usr/i686-w64-mingw32
+make
+sudo make install
+
+Replace i686-w64-mingw32 with x86_64-w64-mingw32 to do a win64 build.
+
+
+
+Scripts on windows
+------------------
+
+To run the bash scripts (rkmisc, rkparameters, etc...) on Windows, you
+need to install MSYS (part of MinGW). The easiest way is through the MinGW
+installer. You need at least msys-bash and msys-coreutils (for dd). Make
+sure you have e.g. C:\MinGW\msys\1.0\bin and C:\rkflashtool in your %PATH%
+variable. The easiest way to run the scripts is from the bash command line.
+If you insist on using cmd.exe, you need to call bash with the script's
+full filename (including its path) as its first argument. You could turn
+that into a .bat file if you want.
+
