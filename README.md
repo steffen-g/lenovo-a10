@@ -41,5 +41,20 @@ make
 ###3. Bootimage
 Mkbootimage from https://github.com/neo-technologies/rockchip-mkbootimg is used.
 
+Generating boot.img using compiled Kernel and prebuilt initrd including fbcon, wifi driver and nanddriver
+
+####Building mkbootimg
+```
+cd rockchip-mkbootimg
+make
+```
+
+####Generating Bootimage using mkbootimg
+```
+cd scripts
+mkdir ../out
+./make_boot_img.sh
+````
+
 ###4. Flashtool
 rkflashtool from http://sourceforge.net/projects/rkflashtool/
