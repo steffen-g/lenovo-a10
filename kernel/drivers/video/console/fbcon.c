@@ -895,9 +895,11 @@ static int var_to_display(struct display *disp,
 	disp->transp = var->transp;
 	disp->rotate = var->rotate;
 	disp->mode = fb_match_mode(var, &info->modelist);
-	if (disp->mode == NULL)
+	if (disp->mode == NULL){
+		printk(KERN_ERR "fbcon.c %s disp->mode == NULL\n", __FUNCTION__);
 		/* This should not happen */
 		return -EINVAL;
+	}
 	return 0;
 }
 

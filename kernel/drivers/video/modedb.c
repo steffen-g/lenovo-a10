@@ -840,8 +840,9 @@ void fb_videomode_to_var(struct fb_var_screeninfo *var,
 int fb_mode_is_equal(const struct fb_videomode *mode1,
 		     const struct fb_videomode *mode2)
 {
+	//printk(KERN_ERR "%s mode1->xres %d - mode2->xres %d \n", __FUNCTION__, mode1->xres, mode2->xres);
 	return (mode1->xres         == mode2->xres &&
-		mode1->yres         == mode2->yres &&
+		mode1->yres         == mode2->yres);/* &&
 		mode1->pixclock     == mode2->pixclock &&
 		mode1->hsync_len    == mode2->hsync_len &&
 		mode1->vsync_len    == mode2->vsync_len &&
@@ -850,7 +851,7 @@ int fb_mode_is_equal(const struct fb_videomode *mode1,
 		mode1->upper_margin == mode2->upper_margin &&
 		mode1->lower_margin == mode2->lower_margin &&
 		mode1->sync         == mode2->sync &&
-		mode1->vmode        == mode2->vmode);
+		mode1->vmode        == mode2->vmode);*/
 }
 
 /**

@@ -161,6 +161,13 @@ config REPORT_FULL_DATA_ITEM
 	  like application can give user more information. But it will put more
 	  pressure on EC.
 
+config REPORT_ENERGY
+	bool "Report energy to sysfs"
+	depends on REPORT_FULL_DATA_ITEM
+	help
+	  Might confuse several battery monitor applications on linux, since 
+	  charge and energy is reported 
+
 config BAT_ADC_DET
 	bool "Enable battery plug/unplug detection to use ADC channel 0"
 	depends on BATTERY_BLUEBERRY
