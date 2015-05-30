@@ -1,0 +1,24 @@
+# NAME		Relative path
+#
+#HWDEF		HWDEF
+package-file	package-file
+bootloader	RK3188Loader(L)_V1.20.bin
+parameter	parameter-adc1v
+#生成整机固件
+misc		Image/misc.img
+boot        Image/boot.img
+recovery	Image/recovery.img
+system		Image/system.img
+cust			Image/cust.img
+#生成pcba固件
+#misc		Image/pcba_small_misc.img
+#recovery	Image/recovery.img
+
+# 要写入backup分区的文件就是自身（update.img）
+# SELF 是关键字，表示升级文件（update.img）自身
+# 在生成升级文件时，不加入SELF文件的内容，但在头部信息中有记录
+# 在解包升级文件时，不解包SELF文件的内容。
+# RESERVED不打包backup
+backup		RESERVED
+update-script	update-script
+recover-script	recover-script

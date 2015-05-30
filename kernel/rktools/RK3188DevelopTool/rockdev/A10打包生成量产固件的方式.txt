@@ -1,0 +1,27 @@
+一、编译固件，需要先更新好kernel以后编译kernel，然后编译android（编译android需要clean,并且使用./mkimage.sh ota命令生成固件）。
+二、将编译好的固件即Image目录拷贝到开发工具当中（路径为kernel\rktools\RK3188DevelopTool\rockdev）。
+三、打包生成pcba量产固件的方式：
+1.进入kernel\rktools\RK3188DevelopTool\rockdev目录。
+2.修改packapge-file文件，将“#生成整机固件”下面的几行注释掉：
+#misc		Image/misc.img
+#boot        Image/boot.img
+#recovery	Image/recovery.img
+#system		Image/system.img
+#cust			Image/cust.img
+打开“#生成pcba固件”下面的两行：
+misc		Image/pcba_small_misc.img
+recovery	Image/recovery.img
+3.在windows中打开cmd窗口，进入烧写工具所在的目录，执行mkupdate.bat脚本即可生成固件update.img。
+
+四、打包生成整机量产固件的方式：
+1.进入kernel\rktools\RK3188DevelopTool\rockdev目录。
+2.修改packapge-file文件，确保“#生成整机固件”下面的几行有打开：
+misc		Image/misc.img
+boot        Image/boot.img
+recovery	Image/recovery.img
+system		Image/system.img
+cust			Image/cust.img
+确保“#生成pcba固件”下面的两行有关闭：
+#misc		Image/pcba_small_misc.img
+#recovery	Image/recovery.img
+3.在windows中打开cmd窗口，进入烧写工具所在的目录，执行mkupdate.bat脚本即可生成固件update.img。

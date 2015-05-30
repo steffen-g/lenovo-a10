@@ -1,0 +1,21 @@
+11:34:02 154	Image Thread Path(\\?\USB#VID_2207&PID_310B#5&C1E6CCE&0&1#{a5dcbf10-6530-11d2-901f-00c04fb951ed}),ThreadID=3072
+11:34:02 194	INFO:执行开始
+11:34:02 214	INFO:开始测试设备
+11:34:02 304	INFO:测试设备成功
+11:34:02 334	INFO:开始下载文件
+11:34:02 374	INFO: Start to download files to flash,backup offset=0x20000
+11:34:02 414	INFO:开始下载文件到Flash
+11:34:02 454	Info:RKA_File_Download start,file=kernel,offset=0x4000
+11:34:08 062	INFO: Download files to flash finished,Total(7446576)B
+11:34:08 162	INFO: Start to check data
+11:34:08 282	INFO:开始校验下载数据
+11:34:08 322	Info:RKA_File_Check start,file=kernel,offset=0x4000
+11:34:10 516	INFO:下载文件成功,耗时(8132MS)
+11:34:10 926	INFO:执行成功
+20:10:27 622	Info:wait for exiting scan thread start
+20:10:27 842	Info:wait for exiting main thread start
+20:10:28 012	ProcessID:3220,ThreadID:3180,RefCount:0
+20:10:28 032	ProcessID:3220,ThreadID:2436,RefCount:0
+20:10:28 062	ProcessID:3220,ThreadID:2976,RefCount:0
+20:10:28 082	ProcessID:3220,ThreadID:496,RefCount:0
+20:10:28 112	ProcessID:3220,ThreadID:3664,RefCount:0

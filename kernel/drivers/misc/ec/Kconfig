@@ -1,0 +1,21 @@
+#
+# EC control drivers configuration
+#
+
+menuconfig EC_DEV
+	bool "ec control driver support"
+	default n	
+
+if EC_DEV
+
+	config EC_DEV_I2C
+	bool "ec use i2c interface"
+	default n
+
+	source "drivers/misc/ec/modules/Kconfig"
+	
+	config EC_DEV_SPI
+	bool "ec use spi interface"
+	default n
+endif
+

@@ -1,0 +1,41 @@
+#
+# ec modules configuration
+#
+if EC_DEV_I2C || EC_DEV_SPI
+	config EC_FIRMWARE
+	tristate "update ec firmware from rk"
+	default n
+
+	config EC_KEY
+	tristate "ec keyboard support"
+	default n
+
+	config EC_TP
+	tristate "ec touch pad support"
+	default n
+
+	config EC_PS2
+	tristate "ec ps2 support"
+	default n
+
+	config EC_LED
+	tristate "ec led control support"
+	default n
+
+	config EC_BATTERY
+	tristate "ec battery driver support"
+	default n
+
+	config EC_CHARGE
+	tristate "ec charge control support"
+	default n
+
+	config EC_GPIO
+	tristate "ec gpio extend support"
+	default n
+
+	config EC_ADC
+	tristate "ec adc extend support"
+	default n
+endif
+

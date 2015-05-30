@@ -1,0 +1,22 @@
+menuconfig BOARD_ID
+	bool "board id select devices support"
+	default n	
+	
+if BOARD_ID
+config BOARD_ID_VENDOR
+bool "board id save in vendor"
+	default n
+
+config BOARD_ID_AUTO_XML
+bool "auto print xml"
+	default n
+
+config BOARD_ID_IDBLOCK
+bool "board id save in idblock"
+	default n
+
+config BOARD_ID_HW
+bool "board id get from hardware"
+	default n
+	
+endif

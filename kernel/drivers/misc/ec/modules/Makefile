@@ -1,0 +1,9 @@
+obj-$(CONFIG_EC_FIRMWARE)		+= ec-firmware.o
+obj-$(CONFIG_EC_KEY)			+= ec-key.o
+obj-$(CONFIG_EC_TP)				+= ec-tp.o
+obj-$(CONFIG_EC_PS2)			+= ec-ps2.o
+obj-$(CONFIG_EC_LED)			+= ec-led.o
+obj-$(CONFIG_EC_BATTERY) 		+= ec-battery.o
+obj-$(CONFIG_EC_CHARGE)			+= ec-charge.o
+obj-$(CONFIG_EC_GPIO)			+= ec-gpio.o
+obj-$(CONFIG_EC_ADC)			+= ec-adc.o

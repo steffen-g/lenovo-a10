@@ -1,0 +1,16 @@
+17:53:11 165	INFO:开始擦除IDB
+17:53:11 425	INFO:Download USBData OK
+17:53:16 604	ERROR: DeviceIoControl failed. bRet=1,err=183,dwReturnByte=0,nSendBytes=4096,dwTotalSended=4096
+17:53:16 604	ERROR:Download USBBoot failed
+17:53:16 605	ERROR:下载Boot失败
+17:54:02 504	INFO:开始擦除IDB
+17:54:02 995	INFO:Download USBData OK
+17:54:04 127	INFO:Download USBBoot OK
+17:54:06 137	Flash(0) - Erasing: 00000000 ~ 00000015 ... 
+17:54:06 175	Good block
+17:54:06 176	INFO:擦除IDB成功
+18:24:23 285	Info:wait for exiting scan thread start
+18:24:23 409	Info:wait for exiting main thread start
+18:24:23 422	ProcessID:5420,ThreadID:5248,RefCount:0
+18:24:23 422	ProcessID:5420,ThreadID:4628,RefCount:0
+18:24:23 422	ProcessID:5420,ThreadID:4304,RefCount:0

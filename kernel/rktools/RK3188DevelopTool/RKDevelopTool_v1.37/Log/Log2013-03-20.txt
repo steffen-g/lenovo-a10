@@ -1,0 +1,5 @@
+09:48:18 224	Info:wait for exiting scan thread start
+09:48:18 314	Info:wait for exiting main thread start
+09:48:18 374	ProcessID:4008,ThreadID:3308,RefCount:0
+09:48:18 394	ProcessID:4008,ThreadID:2800,RefCount:0
+09:48:18 404	ProcessID:4008,ThreadID:3704,RefCount:0

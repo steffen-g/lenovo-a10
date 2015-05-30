@@ -1,0 +1,52 @@
+16:48:08 940	Load Setting ok
+16:48:09 241	RKAndroidTool v1.3.7.0 Start Run
+16:48:09 271	Scan thread:2548
+16:48:09 281	Info:(thread=1952)IoControlProc-->DeviceIoControl In
+16:48:09 291	Info:(thread=1952)IoControlProc-->DeviceIoControl Out,ret=1,err=0
+16:48:09 371	ProcessID:2656,ThreadID:2472,RefCount:0
+16:48:09 401	ProcessID:2656,ThreadID:3144,RefCount:0
+16:48:09 411	ProcessID:2656,ThreadID:2296,RefCount:0
+16:48:09 431	ProcessID:2656,ThreadID:2548,RefCount:0
+16:48:09 441	ProcessID:2656,ThreadID:1952,RefCount:0
+16:49:33 712	Image Thread Path(\\?\USB#VID_2207&PID_310B#5&C1E6CCE&0&1#{a5dcbf10-6530-11d2-901f-00c04fb951ed}),ThreadID=2772
+16:49:33 732	INFO:执行开始
+16:49:33 742	INFO:开始测试设备
+16:49:33 832	INFO:测试设备成功
+16:49:33 852	INFO:开始下载文件
+16:49:33 892	INFO: Start to download files to flash,backup offset=0x20000
+16:49:33 922	INFO:开始下载文件到Flash
+16:49:33 932	Info:RKA_File_Download start,file=kernel,offset=0x4000
+16:49:36 456	INFO: Download files to flash finished,Total(7450672)B
+16:49:36 476	INFO: Start to check data
+16:49:36 506	INFO:开始校验下载数据
+16:49:36 536	Info:RKA_File_Check start,file=kernel,offset=0x4000
+16:49:37 578	INFO:下载文件成功,耗时(3696MS)
+16:49:37 798	INFO:执行成功
+17:48:34 944	Image Thread Path(\\?\USB#VID_2207&PID_310B#5&C1E6CCE&0&1#{a5dcbf10-6530-11d2-901f-00c04fb951ed}),ThreadID=3180
+17:48:34 954	INFO:执行开始
+17:48:34 974	INFO:开始测试设备
+17:48:35 034	INFO:测试设备成功
+17:48:35 054	INFO:开始下载文件
+17:48:35 074	INFO: Start to download files to flash,backup offset=0x20000
+17:48:35 104	INFO:开始下载文件到Flash
+17:48:35 114	Info:RKA_File_Download start,file=kernel,offset=0x4000
+17:48:37 638	INFO: Download files to flash finished,Total(7442480)B
+17:48:37 648	INFO: Start to check data
+17:48:37 668	INFO:开始校验下载数据
+17:48:37 678	Info:RKA_File_Check start,file=kernel,offset=0x4000
+17:48:38 760	INFO:下载文件成功,耗时(3696MS)
+17:48:38 810	INFO:执行成功
+18:17:25 102	Image Thread Path(\\?\USB#VID_2207&PID_310B#5&C1E6CCE&0&1#{a5dcbf10-6530-11d2-901f-00c04fb951ed}),ThreadID=2924
+18:17:25 122	INFO:执行开始
+18:17:25 132	INFO:开始测试设备
+18:17:25 423	INFO:测试设备成功
+18:17:25 463	INFO:开始下载文件
+18:17:25 483	INFO: Start to download files to flash,backup offset=0x20000
+18:17:25 523	INFO:开始下载文件到Flash
+18:17:25 543	Info:RKA_File_Download start,file=kernel,offset=0x4000
+18:17:28 317	INFO: Download files to flash finished,Total(7442480)B
+18:17:28 337	INFO: Start to check data
+18:17:28 387	INFO:开始校验下载数据
+18:17:28 397	Info:RKA_File_Check start,file=kernel,offset=0x4000
+18:17:29 579	INFO:下载文件成功,耗时(4086MS)
+18:17:29 849	INFO:执行成功

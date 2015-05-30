@@ -1,0 +1,10 @@
+config LCD_BOARD_ID_M101NWN8
+	bool "IVO M101NWN8 1366x768 for board id"
+	depends on LCD_BOARD_ID
+        default y
+        
+config LCD_EDID_I2C
+	bool "lcd support edid such as M101NWN8"
+	depends on LCD_BOARD_ID
+	    default y
+
