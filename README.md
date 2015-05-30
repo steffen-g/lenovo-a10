@@ -1,7 +1,8 @@
 # lenovo-a10
 Everything for setting up a native Linux on a Lenovo A10 netbook
 
-1. Kernel
+###1. Kernel
+
 Stock Kernel from Lenovo with modified defconfig to boot Linux instead of Android from eMMC flash.
 Keyboard and battery driver are patched:
 
