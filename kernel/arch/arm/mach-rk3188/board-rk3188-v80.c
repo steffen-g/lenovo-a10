@@ -362,7 +362,7 @@ static int rk29_backlight_pwm_resume(void)
 }
 
 static struct rk29_bl_info rk29_bl_info = {
-        .min_brightness = 50,
+        .min_brightness = 10,
         .max_brightness = 255,//led lifetime max current <180mA
         .brightness_mode =BRIGHTNESS_MODE_LINE,
 	.pre_div = 20 * 1000,  // pwm output clk 20k
