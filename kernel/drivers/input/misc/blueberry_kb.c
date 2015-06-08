@@ -366,13 +366,13 @@ static int blueberry_kb_kp_key_mapping(int x)
             return KEY_DOWN;
 
         case ASUSDEC_KEYPAD_RIGHTWIN:
-            return KEY_SEARCH;
+            return KEY_LEFTMETA;
 
         case ASUSDEC_KEYPAD_LEFTCTRL:
             return KEY_LEFTCTRL;
 
         case ASUSDEC_KEYPAD_LEFTWIN:
-            return 249;//KEY_HOMEPAGE;
+            return KEY_HOME;//KEY_HOMEPAGE;
 
         case ASUSDEC_KEYPAD_LEFTALT:
             return KEY_LEFTALT;
@@ -384,7 +384,7 @@ static int blueberry_kb_kp_key_mapping(int x)
             return KEY_RIGHTALT;
 
         case ASUSDEC_KEYPAD_WINAPP:
-            return KEY_MENU;
+            return KEY_END;
 
         case ASUSDEC_KEYPAD_RIGHTCTRL:
             return KEY_RIGHTCTRL;
