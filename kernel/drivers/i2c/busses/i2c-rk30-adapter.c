@@ -439,6 +439,12 @@ static int rk30_i2c_set_master(struct rk30_i2c *i2c, struct i2c_msg *msgs, int n
     
         if(num == 1) {
                 i2c->count = msgs[0].len;
+		if(i2c->count == 0) {
+			//not supported -> build msg with 1 byte read
+			msgs[0].len = 1;
+			i2c->count = 1;
+			msgs[0].flags |= I2C_M_RD;
+		}
                 if(!(msgs[0].flags & I2C_M_RD)){
                         i2c->msg = &msgs[0];
                         i2c->mode = I2C_CON_MOD_TX;
@@ -611,7 +617,7 @@ static int rk30_i2c_xfer(struct i2c_adapter *adap,
         }
 
 	rk30_i2c_set_clk(i2c, scl_rate);
-        i2c_dbg(i2c->dev, "i2c transfer start: addr: 0x%x, scl_reate: %ldKhz, len: %d\n", msgs[0].addr, scl_rate/1000, num);
+        i2c_dbg(i2c->dev, "i2c transfer start: addr: 0x%x, scl_rate: %ldKhz, len: %d msg[0].len: %d\n", msgs[0].addr, scl_rate/1000, num, msgs[0].len);
 	ret = rk30_i2c_doxfer(i2c, msgs, num);
         i2c_dbg(i2c->dev, "i2c transfer stop: addr: 0x%x, state: %d, ret: %d\n", msgs[0].addr, ret, i2c->state);
 
