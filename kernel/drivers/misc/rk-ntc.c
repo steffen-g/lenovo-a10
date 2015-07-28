@@ -48,6 +48,7 @@ struct rk_ntc_data{
 	struct adc_client       *client; 
 };
 struct rk_ntc_data * ntc_data;
+volatile int temp, temp_raw;
 
 static int voltage_to_temperature(int vol,int *temperature)
 {
@@ -64,7 +65,10 @@ static int voltage_to_temperature(int vol,int *temperature)
 		}
 //		printk("table[%d].resistance=%d,table[%d].resistance=%d,resistance=%d\n",i,table[i].resistance,i+1,table[i+1].resistance,resistance);
 		if(resistance <= table[i].resistance && resistance > table[i+1].resistance){
-			*temperature = table[i].temperature;
+			//*temperature = table[i].temperature;
+			*temperature = (resistance - table[i+1].resistance) * (500 / (table[i].resistance - table[i+1].resistance));
+			*temperature /= 100;
+			*temperature = table[i+1].temperature - *temperature;
 			break;
 		}
 	}
@@ -83,21 +87,30 @@ static void ntc_adc_timer(unsigned long _data)
 }
 static void ntc_adc_callback(struct adc_client *client, void *client_param, int result)
 {
-	struct rk_ntc_data *ddata = (struct rk_ntc_data *)client_param;
-	int temperature,ret;
+	//struct rk_ntc_data *ddata = (struct rk_ntc_data *)client_param;
+	int temperature=0,ret;
 	int vol;
 	vol = result*ADC_REF_VOLTAGE/1024;
 	ret  = voltage_to_temperature(vol,&temperature);
+	temp = temperature;
+	temp_raw = vol;
 	if(ret !=0){
 		temperature = 60;
 		printk("[error]%s,read a invalid result[%d] voltage[%d] ,we set temperature to 60 degree\n",__FUNCTION__,result,vol);
 	}
-//	printk("ntc async read voltage is [%d],temperature is [%d]\n]",vol,temperature);
+	//printk(KERN_INFO "ntc async read voltage is [%d],temperature is [%d]\n]",vol,temperature);
 	
 	return;
 }
-int get_ntc_temp()
+
+int get_ntc_temp_raw(void){
+	return temp_raw;
+}
+
+int get_ntc_temp(void)
 {
+#if 0
+	// this stuff causes a segfault
 	int vol,ret;
 	int temperature;
 	vol = adc_sync_read(ntc_data->adc_client);
@@ -107,8 +120,9 @@ int get_ntc_temp()
 		printk("[error]%s,read a invalid voltage[%d] ,we set temperature to 60 degree\n",__FUNCTION__,vol);
 	}
 	printk("ntc sync read voltage is [%d],temperature is [%d]\n]",vol,temperature);
-
 	return temperature;
+#endif
+	return temp;
 }
 static int rk_ntc_probe(struct platform_device *pdev)
 {
@@ -116,7 +130,7 @@ static int rk_ntc_probe(struct platform_device *pdev)
 	struct rk_ntc_data *ddata;
 	int error = 0;
 	
-	printk("%s start\n",__FUNCTION__);
+	printk(KERN_INFO "%s start\n",__FUNCTION__);
 
 	ddata = kmalloc(sizeof(struct rk_ntc_data), GFP_KERNEL);
 	if(!ddata){
@@ -168,7 +182,7 @@ static int __devexit rk_ntc_remove(struct platform_device *pdev)
 #ifdef CONFIG_PM
 static int rk_ntc_suspend(struct device *dev)
 {
-	struct rk_ntc_platform_data *pdata = dev->platform_data;
+	//struct rk_ntc_platform_data *pdata = dev->platform_data;
 	struct rk_ntc_data *ddata = dev_get_drvdata(dev);
 
 	ddata->in_suspend = 1;
@@ -177,7 +191,7 @@ static int rk_ntc_suspend(struct device *dev)
 
 static int rk_ntc_resume(struct device *dev)
 {
-	struct rk_ntc_platform_data *pdata = dev->platform_data;
+	//struct rk_ntc_platform_data *pdata = dev->platform_data;
 	struct rk_ntc_data *ddata = dev_get_drvdata(dev);
 
 	ddata->in_suspend = 0;

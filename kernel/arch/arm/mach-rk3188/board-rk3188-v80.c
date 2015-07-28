@@ -181,6 +181,13 @@ static struct platform_device device_rk_ntc = {
 		.platform_data	= &rk_ntc_data,
 	},
 };
+#ifdef CONFIG_SENSORS_RKNTC
+static struct platform_device device_rkntc = {
+	.name		= "rkntcdrv",
+	.id		= -1
+};
+#endif
+
 #endif
 
 #if defined CONFIG_RK_LID
@@ -1724,6 +1731,9 @@ static struct platform_device *devices[] __initdata = {
 #if defined CONFIG_RK_NTC
 	&device_rk_ntc,
 #endif
+#if defined CONFIG_SENSORS_RKNTC
+	&device_rkntc,
+#endif
 
 };
 
@@ -2718,6 +2728,10 @@ static struct valid_invalid_name __initdata valid_device_name[] = {
 
 	{"rk-lid"},
 	{"rt3261"},
+#ifdef CONFIG_SENSORS_RKNTC
+	{"rkntcdrv"},
+	{"rk-ntc"},
+#endif
 };
 
 
