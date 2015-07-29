@@ -11,6 +11,9 @@ struct rk_ntc_platform_data{
 
 };
 
+extern int get_ntc_temp(void);
+extern int get_ntc_temp_raw(void);
+
 #define TAIL_OF_TABLE	-1
 #define ADC_SAMPLE_TIME				500
 #define ADC_REF_VOLTAGE				1800
