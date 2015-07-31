@@ -39,6 +39,11 @@ config HWMON_DEBUG_CHIP
 
 comment "Native drivers"
 
+config SENSORS_RKNTC
+	tristate "RK NTC driver"
+	help
+	  
+
 config SENSORS_ABITUGURU
 	tristate "Abit uGuru (rev 1 & 2)"
 	depends on X86 && DMI && EXPERIMENTAL
