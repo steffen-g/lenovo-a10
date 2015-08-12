@@ -396,7 +396,7 @@ static int blueberry_bat_current(struct blueberry_bat *bbbat,
 
 	val->intval = (int)((s16)curr) * 1000;
 
-	if((val->intval > 2000000) ||(val->intval < -2000000)) {
+	if((val->intval > 6000000) ||(val->intval < -6000000)) {
 		pr_err("read back current %d (uA), it's an out of range value.\n", val->intval);
 	}
 	val->intval *= -1; //invert, so battery monitors calculate correctly
