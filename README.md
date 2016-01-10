@@ -85,20 +85,24 @@ adb reboot bootloader
 Otherwise you have to open the device and short the recovery pad to GND and press reset.
 
 ###5. Fixing Standby
-To wakeup from pm-suspend add following to cat /etc/pm/sleep.d/10_standby 
+To wakeup from pm-suspend add following to /etc/pm/sleep.d/10_standby 
 ```
 #!/bin/bash
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 case "${1}" in
         hibernate|suspend)
-		;;
+                rmmod rtl8723as
+                ;;
         resume|thaw)
-		;;
+                echo on > /sys/power/state
+                sleep 3
+                modprobe rtl8723as
+                ;;
 esac
-echo on > /sys/power/state
+
 ```
-The device will wake up on every keypress. But WIFI will not work every time.
+The device will wake up on every keypress. The WIFI driver has to be manually modprobed after resume.
 
 Good luck!
 
