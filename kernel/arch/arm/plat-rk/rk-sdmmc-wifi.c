@@ -422,6 +422,8 @@ int rk29sdk_wifi_power(int on)
         pr_info("%s: %d\n", __func__, on);
         if (on){
                 gpio_set_value(rk_platform_wifi_gpio.power_n.io, rk_platform_wifi_gpio.power_n.enable);
+				gpio_direction_output(RK30_PIN1_PB2, GPIO_LOW);
+				printk(KERN_INFO "rk_platform_wifi_gpio.power_n.io: 0x%x - 0x%x\n", rk_platform_wifi_gpio.power_n.io, RK30_PIN1_PB2);
                 mdelay(50);
 
                 #if defined(CONFIG_SDMMC1_RK29) && !defined(CONFIG_SDMMC_RK29_OLD) && !defined(CONFIG_RTL8188EU) && !defined(CONFIG_RTL8188CU)		
@@ -437,7 +439,8 @@ int rk29sdk_wifi_power(int on)
         }else{
 //                if (!rk29sdk_bt_power_state){
                         gpio_set_value(rk_platform_wifi_gpio.power_n.io, !(rk_platform_wifi_gpio.power_n.enable));
-
+						gpio_direction_output(RK30_PIN1_PB2, GPIO_HIGH);
+						
                         #if defined(CONFIG_SDMMC1_RK29) && !defined(CONFIG_SDMMC_RK29_OLD) && !defined(CONFIG_RTL8188EU) && !defined(CONFIG_RTL8188CU)
                         rk29_sdmmc_gpio_open(1, 0); //added by xbw at 2011-10-13
                         #endif
