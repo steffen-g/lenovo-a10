@@ -84,6 +84,22 @@ adb reboot bootloader
 ```
 Otherwise you have to open the device and short the recovery pad to GND and press reset.
 
+###5. Fixing Standby
+To wakeup from pm-suspend add following to cat /etc/pm/sleep.d/10_standby 
+```
+#!/bin/bash
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+case "${1}" in
+        hibernate|suspend)
+		;;
+        resume|thaw)
+		;;
+esac
+echo on > /sys/power/state
+```
+The device will wake up on every keypress. But WIFI will not work every time.
+
 Good luck!
 
 
