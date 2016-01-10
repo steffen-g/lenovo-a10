@@ -102,7 +102,7 @@ case "${1}" in
 esac
 
 ```
-The device will wake up on every keypress. The WIFI driver has to be manually modprobed after resume.
+The device will wake up on every keypress.
 
 Good luck!
 
