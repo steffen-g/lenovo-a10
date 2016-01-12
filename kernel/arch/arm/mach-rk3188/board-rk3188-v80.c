@@ -2626,7 +2626,7 @@ extern int blueberry_bat_shipping_mode_ctrl(void);
 static void rk30_pm_power_off(void)
 {
        
-        blueberry_bat_shipping_mode_ctrl(); 
+    blueberry_bat_shipping_mode_ctrl(); 
 	gpio_direction_output(RK30_PIN1_PB2, GPIO_HIGH);
 
 	gpio_direction_output(RK30_PIN1_PB5, GPIO_LOW);
@@ -2646,8 +2646,8 @@ static void rk30_pm_power_off(void)
                printk("enter dcdet===========\n");
                if(gpio_get_value (RK30_PIN0_PB2) == GPIO_LOW)
                {
-                       printk("enter restart===========\n");
-                       arm_pm_restart(0, "charge");
+                       //printk("enter restart===========\n");
+                       //arm_pm_restart(0, "charge");
                }
     /** code here may cause tablet cannot boot when shutdown without charger pluged in
     * and then plug in charger. -- Cody Xie
