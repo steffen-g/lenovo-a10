@@ -2809,6 +2809,29 @@ static struct platform_device *devices_id[] __initdata = {
 
 #endif
 
+void rk30_pm_restart(char str, const char *cmd){ 
+    blueberry_bat_shipping_mode_ctrl(); 
+	gpio_direction_output(RK30_PIN1_PB2, GPIO_HIGH);
+
+	gpio_direction_output(RK30_PIN1_PB5, GPIO_LOW);
+
+	gpio_request(RK30_PIN3_PD1, NULL);
+	gpio_direction_output(RK30_PIN3_PD1, GPIO_LOW);
+	gpio_set_value(RK30_PIN3_PD1, GPIO_LOW);
+	mdelay(200);
+	gpio_free(RK30_PIN3_PD1);
+	printk(KERN_ERR "rk30_pm_power_off start...\n");
+#if defined(CONFIG_MFD_WM831X)
+	wm831x_set_bits(Wm831x,WM831X_GPIO_LEVEL,0x0001,0x0000);  //set sys_pwr 0
+	wm831x_device_shutdown(Wm831x);//wm8326 shutdown
+#endif
+
+	arm_machine_restart(str, cmd);
+
+	gpio_direction_output(POWER_ON_PIN, GPIO_LOW);
+	
+
+}
 
 static void __init machine_rk30_board_init(void)
 {
@@ -2823,6 +2846,7 @@ static void __init machine_rk30_board_init(void)
 	gpio_direction_output(RK30_PIN1_PB5, GPIO_HIGH);
 	
 	pm_power_off = rk30_pm_power_off;
+	arm_pm_restart = rk30_pm_restart;
 	
         gpio_direction_output(POWER_ON_PIN, GPIO_HIGH);
 
@@ -2862,6 +2886,8 @@ static void __init machine_rk30_board_init(void)
         clk_set_rate(clk_get_sys("rk_serial.0", "uart"), 48*1000000);
 #endif
 }
+
+
 
 #define HD_SCREEN_SIZE 1920UL*1200UL*4*3
 static void __init rk30_reserve(void)
